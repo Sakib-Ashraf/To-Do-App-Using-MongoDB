@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const todoHandler = require('./routeHandler/todoHandler');
+const userHandler = require('./routeHandler/userHandler');
 const cors = require('cors');
 const app = express();
 
@@ -17,6 +18,7 @@ mongoose.connect('mongodb://localhost/todos',)
 
 //App Route
 app.use('/todo', todoHandler);
+app.use('/user', userHandler);
 
 
 //error handler
@@ -27,6 +29,7 @@ const errorHandler = (err, req, res, next) => {
         res.status(500).json({ error: err });
     }
 };
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3300;
 app.listen(PORT, () => {
