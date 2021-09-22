@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const todoHandler = require('./routeHandler/todoHandler');
 const cors = require('cors');
 const app = express();
 
@@ -14,7 +15,8 @@ mongoose.connect('mongodb://localhost/todos',)
     .then(() => console.log('Database Connection Successful'))
     .catch(err => console.log(err));
 
-
+//App Route
+app.use('/todo', todoHandler);
 
 
 //error handler
